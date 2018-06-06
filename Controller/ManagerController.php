@@ -142,15 +142,15 @@ class ManagerController extends Controller
         }
         $parameters['treeData'] = json_encode($directoriesArbo);
 
-        $form = $this->get('form.factory')->createNamedBuilder('rename', FormType::class)
-            ->add('name', TextType::class, [
+        $form = $this->get('form.factory')->createNamedBuilder('rename', 'form')
+            ->add('name', 'text', [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'label' => false,
                 'data' => $translator->trans('input.default'),
             ])
-            ->add('send', SubmitType::class, [
+            ->add('send', 'submit', [
                 'attr' => [
                     'class' => 'btn btn-primary',
                 ],
@@ -358,7 +358,7 @@ class ManagerController extends Controller
     {
         return $this->createFormBuilder()
             ->setMethod('DELETE')
-            ->add('DELETE', SubmitType::class, [
+            ->add('DELETE', 'submit', [
                 'attr' => [
                     'class' => 'btn btn-danger pull-right',
                     'data-toggle' => 'tooltip',
@@ -377,13 +377,13 @@ class ManagerController extends Controller
         $translator = $this->get('translator');
 
         return $this->createFormBuilder()
-            ->add('name', TextType::class, [
+            ->add('name', 'text', [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'label' => false,
-            ])->add('extension', HiddenType::class)
-            ->add('send', SubmitType::class, [
+            ])->add('extension', 'hidden')
+            ->add('send', 'submit', [
                 'attr' => [
                     'class' => 'btn btn-primary',
                 ],
